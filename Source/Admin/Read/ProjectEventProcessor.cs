@@ -19,8 +19,11 @@ namespace Read
 
         public void Process(ProjectCreated @event)
         {
-            var project = _projects.GetById(@event.Id);
-            project.Name = @event.Name;
+            var project = new Project()
+            {
+                Name = @event.Name,
+                Id = @event.Id
+            };
             _projects.Save(project);
         }
     }
